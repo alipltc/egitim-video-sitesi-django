@@ -1,0 +1,187 @@
+{% extends "homebase.html" %}
+{% block title %}{{ video.title }} {% endblock %}
+{% block keywords %} {{ video.keywords }}  {% endblock %}
+{% block description %}  {{ video.description }} {% endblock %}
+
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="breadcrumb">
+            <div class="container">
+                <div class="breadcrumb-inner">
+                    <ul class="list-inline list-unstyled">
+                        <li><a href="/">Anasayfa</a></li>
+						<li class='active'><a href="/category/{{ video.category_id }}/{{ video.category.slug }}">{{ video.category}}</a></li>
+                    </ul>
+                </div><!-- /.breadcrumb-inner -->
+            </div><!-- /.container -->
+        </div><!-- /.breadcrumb -->
+<!-- --------------------------------------------------------------------ANA YER   --------------------------- -->
+        <div class="body-content outer-top-bd">
+	<div class="container">
+		<div class="sign-in-page inner-bottom-sm">
+			<div class="row">
+				<!-- Sign-in -->
+<div class="col-md-6 col-sm-6 sign-in">
+
+	<div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
+							{% for rs in images %}
+							<div class="carousel-item">
+							<div class="view">
+								<img class="d-block w-100" src="{{ rs.image.url }}" alt="First slide" height="400" width="555">
+								<div class="mask rgba-black-light"></div>
+							</div>
+
+							</div>
+							{% endfor %}
+							</div><!-- /.owl-carousel -->
+</div>
+<!-- Sign-in -->
+
+<!-- create a new account -->
+<div class="col-md-6 col-sm-6 create-new-account">
+	<h2 class="checkout-subtitle">{{ video.title }}</h2>
+	<span class="checkout-subtitle outer-top-xs"></span>
+	<div class="checkbox">
+	  	<label class="checkbox">
+		  	<i class="icon fa fa-video-camera"></i> 42 saat uzunluğunda hazır video içeriği
+		</label>
+		<label class="checkbox">
+		  	<i class="icon fa fa-file"></i> 79 makale
+		</label>
+		<label class="checkbox">
+		  	<i class="icon fa fa-download"></i> 68 indirilebilir kaynak
+		</label>
+		<label class="checkbox">
+		  	<i class="icon fa fa-graduation-cap"></i> Bitirme Sertifikası
+		</label>
+		<label class="checkbox">
+		  	<i class="icon fa fa-money"></i> Uygun Fiyat Garantisi </br>
+		</label>
+		<label class="checkbox">
+		  	<a href="/order/addtocart/{{ video.id }}" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i>SEPETE EKLE</a>
+		</label>
+		<p></p>
+		<label class="checkbox">
+		  	<p>Detaylar Açıklama Kısmında Mevcuttur.</p>
+		</label>
+	</div>
+
+
+</div>
+<!-- create a new account -->			</div><!-- /.row -->
+		</div><!-- /.sigin-in-->
+	</div><!-- /.container -->
+</div>
+		<div class="col-md-12">
+
+						<div class="product-tabs outer-top-smal  wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+
+						<ul id="product-tabs" class="nav nav-tabs nav-tab-cell-detail">
+							<li class="active"><a data-toggle="tab" href="#description">YORUMLAR</a></li>
+							<li class=""><a data-toggle="tab" href="#review">YORUM YAP</a></li>
+							<li class=""><a data-toggle="tab" href="#tags">AÇIKLAMA</a></li>
+							<li class=""><a data-toggle="tab" href="#fragman">FRAGMAN</a></li>
+						</ul><!-- /.nav-tabs #product-tabs -->
+
+
+						<div class="tab-content outer-top-xs">
+
+							<div id="description" class="tab-pane active">
+								<div class="product-tab">
+									<div class="blog-write-comment m-t-20">
+								{% for rs in comments %}
+							<div class="blog-comments inner-bottom-xs">
+								<h4><i class="fa fa-user"></i>  {{ rs.user.first_name }}</h4>
+
+								<span class="review-action pull-right">
+									{{ rs.created_at }}
+									Puan:{{ rs.rate }}
+								</span></br>
+								<p>{{ rs.comment }}</p>
+							</div>
+							{% endfor %}
+							</div>
+								</div>
+							</div><!-- /.tab-pane -->
+
+							<div id="review" class="tab-pane">
+								<div class="blog-write-comment m-t-20">
+								<div class="row">
+									<div class="col-md-12">
+										<h4>YORUM YAPIN</h4>
+										{% if messages %}
+                                    {% for message in messages %}
+                                    <div class="alert alert-{{message.tags}}" role="alert">
+                                        {{ message }}
+                                    </div>
+                                    {% endfor %}
+                                    {% endif %}
+									</div>
+									<div class="col-md-12">
+										<form action="/video/addcomment/{{ video.id }}" class="register-form" role="form" method="post">
+											{% csrf_token %}
+											<div class="form-group">
+												<label class="info-title">Konu </label>
+											<input type="text" class="form-control unicase-form-control text-input" id="id_sucject" name="subject" placeholder="Buraya Yazınız...">
+											<label class="info-title">Mesajınız </label>
+												<textarea class="form-control unicase-form-control" id="id_comment" name="comment" placeholder="Buraya Yazınız..."></textarea>
+											<label class="info-title">Puanınız(1-5):&nbsp;&nbsp;</label><div class="rating "> <input type="radio" name="rate" value="1" id="5"><label for="5"></label> <input type="radio" name="rate" value="2" id="4"><label for="4"></label> <input type="radio" name="rate" value="3" id="3"><label for="3"></label> <input type="radio" name="rate" value="4" id="2"><label for="2"></label> <input type="radio" name="rate" value="5" id="1"><label for="1"></label> </div>
+										  	</div>
+
+											{% if user.id is not None %}
+											<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Gönder</button>
+											{% else %}
+											Yorum Eklemek için giriş yapınız...
+											{% endif %}
+										</form>
+									</div>
+								</div>
+							</div>
+						</div><!-- /.yORUM YAP -->
+
+
+								<div id="tags" class="tab-pane">
+									<div class="product-tag">
+
+										<h4 class="title">Video detail</h4>
+										{{ video.detail|safe }}
+
+									</div><!-- /.product-tab -->
+								</div><!-- /.tab-pane -->
+								<div id="fragman" class="tab-pane">
+									<div class="product-tag">
+
+										<div class="form-group" with>
+						<h3 class="name">{{ video.title }} Serisi Tanıtım</h3>
+						<video
+						id="my-video"
+						class="video-js"
+						controls
+						preload="auto"
+						width="720"
+						height="480"
+						poster="{{ video.image.url }}"
+						data-setup="{
+						'controls': true,
+						'autoplay': false,
+						'preload': 'auto'
+						}">
+						<source src="{{ video.video.url }}" type="video/mp4" />
+						<source src="{{ video.video.url }}" type="video/webm" />
+					  </video>
+							</div>
+
+									</div><!-- /.product-tab -->
+								</div><!-- /.tab-pane -->
+
+
+							</div><!-- /.tab-content -->
+
+						</div>
+							</div>
+		<!-- --------------------------------------------------------------------ANA YER -------------------------------->
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends "homebase.html" %}
+{% block title %}Sepetim {% endblock %}
+{% block keywords %} {{ setting.keywords }}  {% endblock %}
+{% block description %}  {{ setting.description }} {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="breadcrumb">
+            <div class="container">
+                <div class="breadcrumb-inner">
+                    <ul class="list-inline list-unstyled">
+                        <li><a href="/">Ansayfa</a></li>
+                        <li class='active'>Sepetim</li>
+                    </ul>
+                </div><!-- /.breadcrumb-inner -->
+            </div><!-- /.container -->
+        </div><!-- /.breadcrumb -->
+
+        <div class="body-content outer-top-bd">
+            <div class="container">
+                <div class="row inner-bottom-sm">
+			<div class="shopping-cart">
+				<div class="col-md-12 col-sm-12 shopping-cart-table ">
+	<div class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Sil</th>
+					<th>Resim</th>
+                    <th>Video İsmi</th>
+                    <th>Fiyatı</th>
+				</tr>
+			</thead><!-- /thead -->
+			<tfoot>
+				<tr>
+					<td colspan="7">
+						<div class="shopping-cart-btn">
+							<span class="">
+								<a href="#" class="btn btn-upper btn-primary outer-left-xs">Geri Dön</a>
+								<a href="#" class="btn btn-upper btn-primary pull-right outer-right-xs">Alışverişe  Devam Et</a>
+							</span>
+						</div><!-- /.shopping-cart-btn -->
+					</td>
+				</tr>
+			</tfoot>
+			<tbody>
+            {% for rs in shopcart %}
+				<tr>
+					<td class="romove-item"><a href="/order/deleteshopcart/{{ rs.id }}" onclick="return confirm('Sepetten Sileceğine Emin misin?')" title="cancel" class="icon"><i class="fa fa-trash-o"></i></a></td>
+					<td class="cart-image">
+						<a class="entry-thumbnail" href="/video/{{ rs.video.id }}/{{ rs.video.slug }}">
+						    <img src="{{ rs.video.image.url }}" alt="" width="150" height="125">
+						</a>
+					</td>
+					<td class="cart-product-grand-total"><span class="cart-product-description"><a href="/video/{{ rs.video.id }}/{{ rs.video.slug }}">{{ rs.video.title }}</a></span></td>
+                    <td class="cart-product-grand-total"><span class="cart-grand-total-price">{{ rs.price }} TL</span></td>
+				</tr>
+            {% endfor %}
+			</tbody><!-- /tbody -->
+		</table><!-- /table -->
+		<span class="cart-grand-total-price"></span>
+	</div>
+</div><!-- /.shopping-cart-table -->
+				<div class="col-md-4 col-sm-12 cart-shopping-total">
+				</div>
+				<div class="col-md-4 col-sm-12 estimate-ship-tax">
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>
+					<span class="estimate-title">Kupon Kodu</span>
+					<p>Lütfen varsa kupon kodunuzu girin.</p>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+				<tr>
+					<td>
+						<div class="form-group">
+							<input type="text" class="form-control unicase-form-control text-input" placeholder="Kupon Kodun..">
+						</div>
+						<div class="clearfix pull-right">
+							<button type="submit" class="btn-upper btn btn-primary">Uygula</button>
+						</div>
+					</td>
+				</tr>
+		</tbody><!-- /tbody -->
+	</table><!-- /table -->
+</div>
+				<div class="col-md-4 col-sm-12 cart-shopping-total">
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>
+					<div class="cart-sub-total">
+						Ara Toplam<span class="inner-left-md">{{ total }} TL</span>
+					</div>
+					<div class="cart-grand-total">
+						Genel Toplam<span class="inner-left-md">{{ total }} TL</span>
+					</div>
+				</th>
+			</tr>
+		</thead><!-- /thead -->
+		<tbody>
+				<tr>
+					<td>
+						<div class="cart-checkout-btn pull-right">
+							<a href="/order/ordervideo" class="btn btn-upper btn-primary outer-left-xs">SATIN AL</a>
+						</div>
+					</td>
+				</tr>
+		</tbody><!-- /tbody -->
+	</table><!-- /table -->
+</div>
+
+            </div><!-- /.shopping-cart -->
+		</div>
+
+            </div><!-- /.container -->
+        </div><!-- /.body-content -->
+    </div>
+</div>
+{% endblock %}

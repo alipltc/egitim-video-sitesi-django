@@ -1,0 +1,41 @@
+{% extends "homebase.html" %}
+{% block title %}Teşekkür Ederiz :) {{ setting.company }} {% endblock %}
+{% block keywords %} {{ setting.keywords }}  {% endblock %}
+{% block description %}  {{ setting.description }} {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="breadcrumb">
+            <div class="container">
+                <div class="breadcrumb-inner">
+                    <ul class="list-inline list-unstyled">
+                        <li><a href="/">Sepet</a></li>
+                        <li class='active'>Tamamlandı</li>
+                    </ul>
+                </div><!-- /.breadcrumb-inner -->
+            </div><!-- /.container -->
+        </div><!-- /.breadcrumb -->
+
+        <div class="body-content outer-top-bd">
+            <div class="container">
+                <div class="track-order-page inner-bottom-sm">
+                    <div class="row">
+                        <div class="col-md-12">
+            <h2 style="color:green">SİPARİŞİNİZ BAŞARILI</h2>
+            <span class="title-tag inner-top-vs">
+                {{ user.first_name }} {{ user.last_name }}
+            </span>
+            <span class="title-tag inner-top-vs">
+                Sipariş Numarası: {{ ordercode }}
+            </span>
+
+        </div>			</div><!-- /.row -->
+                </div><!-- /.sigin-in-->
+
+        <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
+            </div><!-- /.container -->
+        </div><!-- /.body-content -->
+    </div>
+</div>
+{% endblock %}

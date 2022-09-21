@@ -1,0 +1,38 @@
+{% extends "homebase.html" %}
+{% block title %}Hakkımızda- {{ setting.company }} {% endblock %}
+{% block keywords %} {{ setting.keywords }}  {% endblock %}
+{% block description %}  {{ setting.description }} {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="breadcrumb">
+            <div class="container">
+                <div class="breadcrumb-inner">
+                    <ul class="list-inline list-unstyled">
+                        <li><a href="/">Anasayfa</a></li>
+                        <li class='active'>About As</li>
+                    </ul>
+                </div><!-- /.breadcrumb-inner -->
+            </div><!-- /.container -->
+        </div><!-- /.breadcrumb -->
+
+        <div class="body-content outer-top-bd">
+            <div class="container">
+                <div class="track-order-page inner-bottom-sm">
+                    <div class="row">
+                        <div class="col-md-12">
+            <h2>HAKKIMIZDA</h2>
+            <span class="title-tag inner-top-vs">
+               {{ setting.aboutus|safe }}
+            </span>
+
+        </div>			</div><!-- /.row -->
+                </div><!-- /.sigin-in-->
+
+        <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
+            </div><!-- /.container -->
+        </div><!-- /.body-content -->
+    </div>
+</div>
+{% endblock %}

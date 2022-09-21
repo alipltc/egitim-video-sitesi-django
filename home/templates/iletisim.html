@@ -1,0 +1,59 @@
+{% extends "homebase.html" %}
+{% block title %}İletişim- {{ setting.company }} {% endblock %}
+{% block keywords %} {{ setting.keywords }}  {% endblock %}
+{% block description %}  {{ setting.description }} {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="body-content outer-top-bd">
+	<div class="container">
+		<div class="row inner-bottom-sm">
+			<div class="contact-page">
+				<div class="col-md-12 contact-map outer-bottom-vs">
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.0080692193424!2d80.29172299999996!3d13.098675000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526f446a1c3187%3A0x298011b0b0d14d47!2sTransvelo!5e0!3m2!1sen!2sin!4v1412844527190" width="600" height="450"  style="border:0"></iframe>
+				</div>
+				<div class="col-md-9 contact-form">
+	<div class="col-md-12 contact-title">
+		<h4>Contact Form</h4>
+		{% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{message.tags}}" role="alert">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+	</div>
+	<form action="" method="post">
+		<div class="form-group">
+			{% csrf_token %}
+			{{ form.as_p }}
+		</div>
+		<button type="submit" value="submit" id="submit" class="btn-upper btn btn-primary checkout-page-button" name="submit">SEND</button>
+	</form>
+
+</div>
+<div class="col-md-3 contact-info">
+	<div class="contact-title">
+		<h4>INFORMATION</h4>
+	</div>
+	<div class="clearfix address">
+		<span class="contact-i"><i class="fa fa-map-marker"></i></span>
+		<span class="contact-span">868 Any Stress, Burala Casi, Picasa USA.</span>
+	</div>
+	<div class="clearfix phone-no">
+		<span class="contact-i"><i class="fa fa-mobile"></i></span>
+		<span class="contact-span">(400) 0888 888 888 <br>(400) 888 848 868</span>
+	</div>
+	<div class="clearfix email">
+		<span class="contact-i"><i class="fa fa-envelope"></i></span>
+		<span class="contact-span">Contact@Unicase.com <br>Sale@Unicase.com</span>
+	</div>
+</div>			</div><!-- /.contact-page -->
+		</div><!-- /.row -->
+		<!-- ============================================== BRANDS CAROUSEL ============================================== -->
+<!-- ============================================== BRANDS CAROUSEL : END ============================================== -->	</div><!-- /.container -->
+</div><!-- /.body-content -->
+    </div>
+</div>
+{% endblock %}

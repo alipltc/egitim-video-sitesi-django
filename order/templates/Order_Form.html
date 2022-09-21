@@ -1,0 +1,122 @@
+{% extends "homebase.html" %}
+{% block title %}Al ve Onayla {% endblock %}
+{% block keywords %} {{ setting.keywords }}  {% endblock %}
+{% block description %}  {{ setting.description }} {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="breadcrumb">
+            <div class="container">
+                <div class="breadcrumb-inner">
+                    <ul class="list-inline list-unstyled">
+                        <li><a href="/">Sepet</a></li>
+                        <li class='active'>Satış</li>
+                    </ul>
+                </div><!-- /.breadcrumb-inner -->
+            </div><!-- /.container -->
+        </div><!-- /.breadcrumb -->
+        <div class="col-md-6 col-sm-6 sign-in">
+            <h4 style="color:red">Kullanıcı Bilgileri</h4>
+        <form class="register-form outer-top-xs" role="form" method="post">
+                    {% csrf_token %}
+                    {% if messages %}
+                    {% for message in messages %}
+                     <div class="alert alert-{{message.tags}}" style="color: #d43f3a" role="alert">
+                         {{ message|safe }}
+                     </div>
+                    {% endfor %}
+                    {% endif %}
+                    <div class="form-group">
+                        <label class="info-title" for="exampleInputEmail1">Ad</label>
+                        <input type="text" name="first_name" value="{{ user.first_name }}" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+                    </div>
+                    <div class="form-group">
+                        <label class="info-title" for="exampleInputEmail1">Soyad</label>
+                        <input type="text" name="last_name" value="{{ user.last_name }}" class="form-control unicase-form-control text-input" >
+                    </div>
+                    <div class="form-group">
+                        <label class="info-title" for="exampleInputEmail1">Adres</label>
+                        <input type="text" name="address" value="{{ profile.address }}" class="form-control unicase-form-control text-input" >
+                    </div>
+                    <div class="form-group">
+                        <label class="info-title" for="exampleInputEmail1">Telefon</label>
+                        <input type="text" name="phone" value="{{ profile.phone }}" class="form-control unicase-form-control text-input" >
+                    </div>
+                    <div class="form-group">
+                        <label class="info-title" for="exampleInputPassword1">Şehir</label></br>
+                        <select name="city" class="orm-control unicase-form-control text-input" id="exampleInputPassword1">
+                            <option value="İstanbul" selected>İstanbul</option>
+                            <option value="Ankara" selected>Ankara</option>
+                            <option value="İzmir" selected>İzmir</option>
+                            <option value="Bursa" selected>Bursa</option>
+                            <option value="Konya" selected>Konya</option>
+                            <option value="{{ profile.city }}" selected>{{ profile.city }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="info-title" for="exampleInputEmail1">Ülke</label>
+                        <input type="text" name="country" value="{{ profile.country }}" class="form-control unicase-form-control text-input" >
+                    </div>
+                    <button type="submit" class="btn-upper btn btn-primary checkout-page-button">SİPARİŞİ ONAYLA</button>
+                </form>
+        </div>
+        <div class="col-md-6 col-sm-6 sign-in">
+            <h4 style="color:red">Kart Bilgileri</h4>
+            <div class="form-group">
+                        <label class="info-title" for="exampleInputEmail1">Toplam</label>
+                        <input type="text" name="first_name" value="{{ total }} TL" class="form-control unicase-form-control text-input" id="exampleInputEmail2">
+                    </div>
+                    <div class="form-group">
+                        <label class="info-title" for="exampleInputEmail1">Kart Sahibi</label>
+                        <input type="text" name="lastname" placeholder="Adı Soyadı" class="form-control unicase-form-control text-input" >
+                    </div>
+                    <div class="form-group">
+                        <label class="info-title" for="exampleInputEmail1">Kart Numarası</label>
+                        <input type="text" name="address" placeholder="**** **** **** ****" class="form-control unicase-form-control text-input" >
+                    </div>
+                    <div class="form-group">
+                        <label class="info-title" for="exampleInputEmail1">Kart Tarihi</label>
+                        <input type="text" name="phone" placeholder="**/**" class="form-control unicase-form-control text-input" >
+                    </div>
+                    <div class="form-group">
+                        <label class="info-title" for="exampleInputEmail1">Güvenlik Numarası</label>
+                        <input type="text" name="phone" placeholder="***" class="form-control unicase-form-control text-input" >
+                    </div>
+
+        </div>
+        <div class="shopping-cart">
+				<div class="col-md-12 col-sm-12 shopping-cart-table ">
+        <div class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Resim</th>
+                    <th>Video ismi</th>
+                    <th>Adet</th>
+                    <th>Fiyatı</th>
+				</tr>
+			</thead><!-- /thead -->
+            <tbody>
+            {% for rs in shopcart %}
+				<tr>
+					<td class="cart-image">
+						<a class="entry-thumbnail" href="/video/{{ rs.video.id }}/{{ rs.video.slug }}">
+						    <img src="{{ rs.video.image.url }}" alt="" width="150" height="125">
+						</a>
+					</td>
+                    <td class="cart-product-grand-total"><span class="cart-product-description"><a href="/video/{{ rs.video.id }}/{{ rs.video.slug }}">{{ rs.video.title }}</a></span></td>
+                    <td class="cart-product-grand-total"><span class="cart-grand-total-price">{{ rs.quantity }}</span></td>
+                    <td class="cart-product-grand-total"><span class="cart-grand-total-price">{{ rs.price }} TL</span></td>
+				</tr>
+            {% endfor %}
+			</tbody><!-- /tbody -->
+		</table><!-- /table -->
+		<span class="cart-grand-total-price"></span>
+	    </div>
+                    </div>
+            </div>
+
+    </div>
+</div>
+{% endblock %}

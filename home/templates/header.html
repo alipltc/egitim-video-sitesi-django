@@ -1,0 +1,181 @@
+{% load static %}
+<header class="header-style-1">
+
+	<!-- ============================================== TOP MENU ============================================== -->
+<div class="top-bar animate-dropdown">
+	<div class="container">
+		<div class="header-top-inner">
+
+			<div class="cnt-account">
+				<ul class="list-unstyled">
+					{% if user.id is not None %}
+					<img src="{{ user.userprofile.image.url }}" height="20" width="20">
+					<li>{{ user.first_name }}&nbsp;{{ user.last_name }},&nbsp;Hoş Geldiniz</li>
+					<li><a href="/user/"><i class="icon fa fa-user"></i>Hesabım</a></li>
+					<li><a href="/logout/"><i class="icon fa fa-sign-out"></i>Çıkış Yap</a></li>
+					<li><a href="/shopcart/"><i class="icon fa fa-shopping-cart"></i>Sepetim</a></li>
+					<li><a href="/user/orders"><i class="icon fa fa-play"></i>Videolarım</a></li>
+					{% else %}
+					<li><a href="/signup/"><i class="icon fa fa-key"></i>Kayıt Ol</a></li>
+					<li><a href="/login/"><i class="icon fa fa-sign-in"></i>Giriş Yap</a></li>
+					{% endif %}
+					{% if messages %}
+                                    {% for message in messages %}
+                                        <i class="alert alert-{{message.tags}}">{{ message }}</i>
+                                    {% endfor %}
+                                    {% endif %}
+
+
+				</ul>
+			</div><!-- /.cnt-account -->
+
+
+			<div class="clearfix"></div>
+		</div><!-- /.header-top-inner -->
+	</div><!-- /.container -->
+</div><!-- /.header-top -->
+<!-- ============================================== TOP MENU : END ============================================== -->
+	<div class="main-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
+					<!-- ============================================================= LOGO ============================================================= -->
+<div class="logo">
+	<a href="/">
+
+		<img src="{% static 'assets/images/evn.png'%}" alt="">
+
+	</a>
+</div><!-- /.logo -->
+<!-- ============================================================= LOGO : END ============================================================= -->				</div><!-- /.logo-holder -->
+
+				<div class="col-xs-12 col-sm-12 col-md-6 top-search-holder">
+					<div class="contact-row">
+    <div class="phone inline">
+        <i class="icon fa fa-phone"></i> (212) 444 4 444
+    </div>
+    <div class="contact inline">
+        <i class="icon fa fa-envelope"></i> evinkls@gmail.com
+    </div>
+</div><!-- /.contact-row -->
+<!-- ============================================================= SEARCH AREA ============================================================= -->
+<div class="search-area">
+    <form action="/search/" method="post">
+		{% csrf_token %}
+        <div class="control-group">
+
+            <ul class="categories-filter animate-dropdown">
+				<li>&nbsp;&nbsp;Sitede Ara&nbsp;&nbsp;</li>
+            </ul>
+
+            <input class="search-field" name="query" type="text" placeholder="Search here..." />
+
+            <button class="btn-upper btn btn-primary checkout-page-button"><i class="fa fa-search"></i></button>
+
+        </div>
+    </form>
+</div><!-- /.search-area -->
+<!-- ============================================================= SEARCH AREA : END ============================================================= -->				</div><!-- /.top-search-holder -->
+
+				<div class="col-xs-12 col-sm-12 col-md-3 animate-dropdown top-cart-row">
+					<!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
+
+	<div class="dropdown dropdown-cart">
+		<a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
+			<div class="items-cart-inner">
+				<div class="total-price-basket">
+					<span class="lbl"></span>
+					<span class="total-price">
+						<span class="sign">SEPETİM</span>
+					</span>
+				</div>
+				<div class="basket">
+					<i class="glyphicon glyphicon-shopping-cart"></i>
+				</div>
+				<div class="basket-item-count"><span class="count">{{ request.session.cart_items }}</span></div>
+
+		    </div>
+		</a>
+		<ul class="dropdown-menu">
+			<li>
+				<div class="cart-item product-summary">
+					<div class="row">
+						{% for rs in shopcart %}
+						<div class="col-xs-11">
+							<h3 class="name"><a href="index.php?page-detail">{{ rs.video.title }}</a></h3>
+							<div class="price">{{ rs.video.price }} TL</div>
+						</div>
+
+						<div class="col-xs-1 action">
+							<a href="#"><i class="fa fa-trash"></i></a>
+						</div>
+						{% endfor %}
+					</div>
+				</div><!-- /.cart-item -->
+				<div class="clearfix"></div>
+			<hr>
+
+			<div class="clearfix cart-total">
+
+				<div class="clearfix"></div>
+
+				<a href="/shopcart" class="btn btn-upper btn-primary btn-block m-t-20">Sepete Git</a>
+			</div><!-- /.cart-total-->
+
+
+		</li>
+		</ul><!-- /.dropdown-menu-->
+	</div><!-- /.dropdown-cart -->
+
+<!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= -->				</div><!-- /.top-cart-row -->
+			</div><!-- /.row -->
+
+		</div><!-- /.container -->
+
+	</div><!-- /.main-header -->
+
+	<!-- ============================================== NAVBAR ============================================== -->
+<div class="header-nav animate-dropdown">
+    <div class="container">
+        <div class="yamm navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <button data-target="#mc-horizontal-menu-collapse" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="nav-bg-class">
+                <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
+	<div class="nav-outer">
+		<ul class="nav navbar-nav">
+			<li class="active dropdown yamm-fw">
+				<a href="/">Anasayfa</a>
+			</li>
+			<li class="dropdown hidden-sm">
+				<a href="/hakkimizda">HAKKIMIZDA</a>
+			</li>
+
+			<li class="dropdown">
+				<a href="/iletisim">ILETISIM</a>
+			</li>
+			<li class="dropdown">
+				<a href="/faq">S.S.S.</a>
+			</li>
+
+
+		</ul><!-- /.navbar-nav -->
+		<div class="clearfix"></div>
+	</div><!-- /.nav-outer -->
+</div><!-- /.navbar-collapse -->
+
+
+            </div><!-- /.nav-bg-class -->
+        </div><!-- /.navbar-default -->
+    </div><!-- /.container-class -->
+
+</div><!-- /.header-nav -->
+<!-- ============================================== NAVBAR : END ============================================== -->
+
+</header>

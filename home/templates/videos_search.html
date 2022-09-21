@@ -1,0 +1,43 @@
+{% extends "homebase.html" %}
+{% block title %} Site Arama Sonuçları {% endblock %}
+{% block keywords %} {{ setting.keywords }}  {% endblock %}
+{% block description %}  {{ setting.description }} {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="breadcrumb">
+            <div class="container">
+                <div class="breadcrumb-inner">
+                    <ul class="list-inline list-unstyled">
+                        <li><a href="/">Ansayfa</a></li>
+                        <li class='active'>Sonuç</li>
+                    </ul>
+                </div><!-- /.breadcrumb-inner -->
+            </div><!-- /.container -->
+        </div><!-- /.breadcrumb -->
+
+        <table class="table table-bordered">
+														<thead>
+															<tr>
+																<th>Resim</th>
+																<th>Video İsmi</th>
+																<th>Kategorisi</th>
+																<th>Fiyatı</th>
+															</tr>
+														</thead>
+														<tbody>
+                                                        {% for rs in videos %}
+															<tr>
+																<td><a href="/video/{{ rs.id }}/{{ rs.slug }}"><img  src="{{ rs.image.url }}" height="100" width="100" alt=""></a></td>
+																<td><h3 class="name"><a href="/video/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a></h3></td>
+																<td><a href="/category/{{ rs.category_id }}/{{ rs.category.slug }}">{{ rs.category}}</a></td>
+																<td><h3 class="name">{{ rs.price }} TL</h3></td>
+															</tr>
+                                                        {% endfor %}
+														</tbody>
+													</table>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends "homebase.html" %}
+{% block title %}Kullanıcı Panel {% endblock %}
+{% block keywords %} {{ setting.keywords }}  {% endblock %}
+{% block description %}  {{ setting.description }} {% endblock %}
+
+
+{% block content %}
+<div class="breadcrumb">
+	<div class="container">
+		<div class="breadcrumb-inner">
+			<ul class="list-inline list-unstyled">
+				<li><a href="/">Anasayfa</a></li>
+				<li class="active">Kullanıcı Paneli</li>
+			</ul>
+		</div><!-- /.breadcrumb-inner -->
+	</div><!-- /.container -->
+</div>
+<div class="body-content outer-top-xs">
+	<div class="container">
+		<div class="row outer-bottom-sm">
+			<div class="col-md-3 sidebar">
+	            <!-- ================================== TOP NAVIGATION ================================== -->
+<div class="side-menu animate-dropdown outer-bottom-xs">
+    <div class="head"><i class="icon fa fa-user fa-fw"></i> Kullanıcı Panel</div>
+    <nav class="yamm megamenu-horizontal" role="navigation">
+        <ul class="nav">
+            <li>
+                <a href="/user" >Hesabım</a>
+			</li><!-- /.menu-item -->
+			 <li>
+                <a href="/shopcart" >Sepetim</a>
+			</li><!-- /.menu-item -->
+			<li>
+                <a href="/user/comments" >Yorumlarım</a>
+			</li><!-- /.menu-item -->
+			<li>
+                <a href="/user/orders" >Videolarım</a>
+			</li><!-- /.menu-item -->
+			<li>
+                <a href="/logout" >Çıkış Yap</a>
+			</li><!-- /.menu-item -->
+
+
+        </ul><!-- /.nav -->
+    </nav><!-- /.megamenu-horizontal -->
+</div><!-- /.side-menu -->
+<!-- ================================== TOP NAVIGATION : END ================================== -->
+            </div><!-- /.sidebar -->
+			<div class="col-md-9"><!-- /.Bunun içi dolacak -->
+				<table class="table table-bordered">
+			<thead>
+
+				<tr>
+					<th class="cart-description item">Profil Resmi</th>
+					<th class="cart-product-edit"><img src="{{ user.userprofile.image.url }}" height="50"></th>
+				</tr>
+				<tr>
+					<th class="cart-product-name item">Ad Soyad</th>
+					<th class="cart-product-name-info">{{ profile.user_name}}</th>
+				</tr>
+				<tr>
+					<th class="cart-product-name item">Email</th>
+					<th class="cart-product-name-info">{{ profile.user.email }}</th>
+
+				</tr>
+				<tr>
+					<th class="cart-qty item">Telefon</th>
+					<th class="cart-product-quantity">{{ profile.phone }}</th>
+				</tr>
+				<tr>
+					<th class="cart-sub-total item">Adress</th>
+					<th class="cart-product-sub-total">{{ profile.address }}</th>
+				</tr>
+				<tr>
+					<th class="cart-total last-item">Şehir</th>
+					<th class="cart-product-grand-total"><span class="cart-grand-total-price">{{ profile.city }}</span></th>
+				</tr>
+				<tr>
+					<th class="cart-total last-item">Ülke</th>
+					<th class="cart-product-grand-total"><span class="cart-grand-total-price">{{ profile.country }}</span></th>
+				</tr>
+			</thead><!-- /thead -->
+			<tbody>
+			<div class="shopping-cart-btn">
+				<span class="">
+					<a href="update/" class="btn btn-upper btn-primary outer-left-xs">Profil Güncelle</a>
+					<a href="password/" class="btn btn-upper btn-primary outer-left-xs">Şifre Güncelle</a>
+				</span>
+			</div>
+
+			</tbody><!-- /tbody -->
+		</table>
+
+
+			</div><!-- /.col -->
+		</div><!-- /.row -->
+	</div><!-- /.container -->
+
+</div>
+{% endblock %}

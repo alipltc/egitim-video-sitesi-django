@@ -1,0 +1,63 @@
+{% extends "homebase.html" %}
+{% block title %}S.S.S. {{ setting.company }} {% endblock %}
+{% block keywords %} {{ setting.keywords }}  {% endblock %}
+{% block description %}  {{ setting.description }} {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="breadcrumb">
+            <div class="container">
+                <div class="breadcrumb-inner">
+                    <ul class="list-inline list-unstyled">
+                        <li><a href="/">Anasayfa</a></li>
+                        <li class='active'>S.S.S.</li>
+                    </ul>
+                </div><!-- /.breadcrumb-inner -->
+            </div><!-- /.container -->
+        </div><!-- /.breadcrumb -->
+
+        <div class="body-content outer-top-bd">
+            <div class="container">
+		<div class="checkout-box faq-page inner-bottom-sm">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Sıkça Sorulan Sorular</h2>
+					<span class="title-tag">En Son Güncelleme 2 Mayıs 2022</span>
+					<div class="panel-group checkout-steps" id="accordion">
+						<!-- checkout-step-01  -->
+{% for rs in faq %}
+<div class="panel panel-default checkout-step-02">
+
+	<!-- panel-heading -->
+		<div class="panel-heading">
+    	<h4 class="unicase-checkout-title">
+	        <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapse{{ rs.siranumara }}">
+	          <span>{{ rs.siranumara }}</span>{{ rs.question }}
+	        </a>
+	     </h4>
+
+    </div>
+    <!-- panel-heading -->
+
+	<div id="collapse{{ rs.siranumara }}" class="panel-collapse collapse" style="height: 0px;">
+
+		<!-- panel-body  -->
+	    <div class="panel-body">
+	    	{{ rs.answer }}
+		</div>
+		<!-- panel-body  -->
+
+	</div><!-- row -->
+</div>
+<!-- checkout-step-01  -->
+{% endfor %}
+
+					</div><!-- /.checkout-steps -->
+				</div>
+			</div><!-- /.row -->
+		</div><!-- /.checkout-box -->
+        </div><!-- /.body-content -->
+    </div>
+</div>
+{% endblock %}

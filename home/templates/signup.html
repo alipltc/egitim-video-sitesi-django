@@ -1,0 +1,57 @@
+{% extends "homebase.html" %}
+{% block title %}Kayıt Ol {% endblock %}
+{% block keywords %} {{ setting.keywords }}  {% endblock %}
+{% block description %}  {{ setting.description }} {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="breadcrumb">
+            <div class="container">
+                <div class="breadcrumb-inner">
+                    <ul class="list-inline list-unstyled">
+                        <li><a href="/">Ansayfa</a></li>
+                        <li class='active'>Kayıt Ol</li>
+                    </ul>
+                </div><!-- /.breadcrumb-inner -->
+            </div><!-- /.container -->
+        </div><!-- /.breadcrumb -->
+
+        <div class="body-content outer-top-bd">
+                <div class="container">
+                    <div class="sign-in-page inner-bottom-sm">
+                        <div class="row">
+                            <!-- Sign-in -->
+            <div class="col-md-6 col-sm-6 sign-in">
+                <h4 class="">Kayıt Ol</h4>
+                <p class="">Bize Katıl.</p>
+                <form method="post" class="register-form outer-top-xs" role="form">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="col-md-6 col-12 mb-20">
+                            <div class="form-group">
+                            {{ field.label_tag }}<br>
+                            {{ field }}
+                            {% if field.help_text %}
+                            {{ field.help_text }}
+                            {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="col-md-6 col-12 mb-10">
+                           <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Kayıt Ol</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Sign-in -->
+
+            		</div><!-- /.row -->
+                    </div><!-- /.sigin-in-->
+            	</div><!-- /.container -->
+            </div>
+
+
+    </div>
+</div>
+{% endblock %}

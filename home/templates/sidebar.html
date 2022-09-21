@@ -1,0 +1,51 @@
+{% load static %}
+<div class="body-content outer-top-xs" id="top-banner-and-menu">
+	<div class="container">
+	<div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
+
+                    <!-- ================================== TOP NAVIGATION ================================== -->
+        <div class="side-menu animate-dropdown outer-bottom-xs">
+            <div class="head"><i class="icon fa fa-align-justify fa-fw"></i> Kategoriler</div>
+            <nav class="yamm megamenu-horizontal" role="navigation">
+                {% load mptt_tags %}
+                <ul class="nav">
+                     {% recursetree category %}
+                    <li class="dropdown menu-item">
+                        <a href="/category/{{ node.id }}/{{ node.slug }}" {% if not node.is_leaf_node %} class="dropdown-toggle" data-toggle="dropdown" {% endif %} >{{ node.title }}</a>
+                        {% if not node.is_leaf_node %}
+                         <ul class="dropdown-menu mega-menu">
+                        <li class="yamm-content">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3">
+
+                        <ul>
+                            <li><a href="#">{{ children }}</a></li>
+                        </ul>
+
+                             </div><!-- /.col -->
+
+                        </div><!-- /.row -->
+                        </li><!-- /.yamm-content -->
+                         </ul><!-- /.dropdown-menu -->
+                        {% endif %}
+                    </li>
+                    {% endrecursetree %}
+                </ul><!-- /.nav -->
+            </nav><!-- /.megamenu-horizontal -->
+        </div><!-- /.side-menu -->
+           <div class="wide-banner cnt-strip">
+				<div class="image">
+					<img class="img-responsive" src="{% static 'assets/images/banners/7.jpg'%}" alt="">
+				</div>
+
+			</div>
+        <!-- ================================== TOP NAVIGATION : END ================================== -->
+
+        <!-- ============================================== SPECIAL OFFER ============================================== -->
+
+
+        <!-- ============================================== COLOR: END ============================================== -->
+
+
+                </div><!-- /.sidemenu-holder -->

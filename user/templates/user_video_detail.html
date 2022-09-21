@@ -1,0 +1,89 @@
+{% extends "homebase.html" %}
+{% block title %}İyi Seyirler... {% endblock %}
+{% block keywords %} {{ setting.keywords }}  {% endblock %}
+{% block description %}  {{ setting.description }} {% endblock %}
+
+
+{% block content %}
+<div class="breadcrumb">
+	<div class="container">
+		<div class="breadcrumb-inner">
+			<ul class="list-inline list-unstyled">
+				<li><a href="/user">Hesap</a></li>
+				<li><a href="/user/orders">Videolarım</a></li>
+				{% for rs in ordervideodetail %}
+				<li class="active">{{ rs.title }}</li>
+				{% endfor %}
+			</ul>
+		</div><!-- /.breadcrumb-inner -->
+	</div><!-- /.container -->
+</div>
+ <div class="body-content outer-top-bd">
+            <div class="container">
+		<div class="checkout-box faq-page inner-bottom-sm">
+			<div class="row">
+				<div class="col-md-12">
+					{% for rs in ordervideodetail %}
+					<h2>{{ rs.title }} Serisi</h2>
+					<span class="title-tag">Yükleme Tarihi : {{ rs.created_at }}</span>
+					{% endfor %}
+					<div class="panel-group checkout-steps" id="accordion">
+
+						<!-- checkout-step-01  -->
+{% for rs in videos %}
+<div class="panel panel-default checkout-step-02">
+
+	<!-- panel-heading -->
+		<div class="panel-heading">
+    	<h4 class="unicase-checkout-title">
+	        <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapse{{ rs.videono }}">
+	          <span>{{ rs.videono }}</span>{{ rs.title }}
+	        </a>
+	     </h4>
+
+    </div>
+    <!-- panel-heading -->
+
+	<div id="collapse{{ rs.videono }}" class="panel-collapse collapse" style="height: 0px;">
+
+		<!-- panel-body  -->
+	    <div class="panel-body">
+	    	<div class="form-group" with>
+						<video
+						id="my-video"
+						class="video-js"
+						controls
+						preload="auto"
+						width="1024"
+						height="536"
+						poster="{{ rs.image.url }}"
+						data-setup="{
+						'controls': true,
+						'autoplay': false,
+						'preload': 'auto'
+						}">
+						<source src="{{ rs.videos.url }}" type="video/mp4" />
+						<source src="{{ rs.videos.url }}" type="video/webm" />
+					  </video>
+							</div>
+		</div>
+		<!-- panel-body  -->
+
+	</div><!-- row -->
+</div>
+<!-- checkout-step-01  -->
+{% endfor %}
+
+
+					</div><!-- /.checkout-steps -->
+				</div>
+			</div><!-- /.row -->
+		</div><!-- /.checkout-box -->
+        </div><!-- /.body-content -->
+    </div>
+			</div>
+		</div><!-- /.row -->
+	</div><!-- /.container -->
+
+</div>
+{% endblock %}

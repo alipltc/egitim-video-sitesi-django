@@ -1,0 +1,88 @@
+{% extends "homebase.html" %}
+{% block title %}Yorumlarım {% endblock %}
+{% block keywords %} {{ setting.keywords }}  {% endblock %}
+{% block description %}  {{ setting.description }} {% endblock %}
+
+
+{% block content %}
+<div class="breadcrumb">
+	<div class="container">
+		<div class="breadcrumb-inner">
+			<ul class="list-inline list-unstyled">
+				<li><a href="/user">Hesap</a></li>
+				<li class="active">Yorumlarım</li>
+			</ul>
+		</div><!-- /.breadcrumb-inner -->
+	</div><!-- /.container -->
+</div>
+<div class="body-content outer-top-xs">
+	<div class="container">
+		<div class="row outer-bottom-sm">
+			<div class="col-md-3 sidebar">
+	            <!-- ================================== TOP NAVIGATION ================================== -->
+<div class="side-menu animate-dropdown outer-bottom-xs">
+    <div class="head"><i class="icon fa fa-user fa-fw"></i> Kullanıcı Panel</div>
+    <nav class="yamm megamenu-horizontal" role="navigation">
+        <ul class="nav">
+            <li>
+                <a href="/user" >Hesabım</a>
+			</li><!-- /.menu-item -->
+			 <li>
+                <a href="/shopcart" >Sepetim</a>
+			</li><!-- /.menu-item -->
+			<li>
+                <a href="/user/comments" >Yorumlarım</a>
+			</li><!-- /.menu-item -->
+			<li>
+                <a href="#" >My Orders</a>
+			</li><!-- /.menu-item -->
+			<li>
+                <a href="#" >My Orders</a>
+			</li><!-- /.menu-item -->
+
+
+        </ul><!-- /.nav -->
+    </nav><!-- /.megamenu-horizontal -->
+</div><!-- /.side-menu -->
+<!-- ================================== TOP NAVIGATION : END ================================== -->
+            </div><!-- /.sidebar -->
+			<div class="col-md-9"><!-- /.Bunun içi dolacak -->
+				{% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{message.tags}}" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+
+                        <th class="li-product-thumbnail">Video</th>
+                        <th class="cart-product-name">Konu</th>
+                        <th class="li-product-price">Mesajım</th>
+                        <th class="li-product-remove">Durum</th>
+                        <th class="li-product-add-cart">Tarih</th>
+                        <th class="li-product-add-cart">Kaldır</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for rs in comments %}
+                    <tr>
+                        <td class="li-product-name"><a href="/video/{{ rs.video_id }}/{{ rs.video.slug }}">{{ rs.video.title }}</a></td>
+                        <td class="li-product-name">{{ rs.subject }}</td>
+                        <td class="li-product-price"><span class="amount">{{ rs.comment }}</span></td>
+                        <td class="li-product-price"><span class="amount">{{ rs.status }}</span></td>
+                        <td class="li-product-price"><span class="amount">{{ rs.created_at }}</span></td>
+                        <td class="li-product-add-cart"><a href="/user/deletecomment/{{ rs.id }}" onclick="return confirm('Yorumun Kaldırılacak Emin Misin?')">Sil</a></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+			</div><!-- /.col -->
+		</div><!-- /.row -->
+	</div><!-- /.container -->
+
+</div>
+{% endblock %}
